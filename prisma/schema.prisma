@@ -30,7 +30,7 @@ model Restaurant {
 model MenuCategory {
   id           String     @id @default(uuid())
   name         String
-  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
   restaurantId String
   products     product[]
   createdAt    DateTime   @default(now())
@@ -45,9 +45,9 @@ model product {
   imageUrl       String
   orderProducts  OrderProduct[]
   ingredients    String[]
-  restaurant     Restaurant     @relation(fields: [restaurantId], references: [id])
+  restaurant     Restaurant     @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
   restaurantId   String
-  menuCategory   MenuCategory   @relation(fields: [menuCategoryId], references: [id])
+  menuCategory   MenuCategory   @relation(fields: [menuCategoryId], references: [id], onDelete: Cascade)
   menuCategoryId String
   createdAt      DateTime       @default(now())
   upadatedAt     DateTime       @updatedAt
@@ -59,7 +59,7 @@ model Order {
   status            OrderStatus
   orderProducts     OrderProduct[]
   consumptionMethod consumptionMethod
-  restaurant        Restaurant        @relation(fields: [restaurantId], references: [id])
+  restaurant        Restaurant        @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
   restaurantId      String
   createdAt         DateTime          @default(now())
   upadatedAt        DateTime          @updatedAt
@@ -67,10 +67,10 @@ model Order {
 
 model OrderProduct {
   id         String   @id @default(uuid())
-  product    product  @relation(fields: [productId], references: [id])
+  product    product  @relation(fields: [productId], references: [id],onDelete: Cascade ) 
   productId  String
   orderId    Int
-  order      Order    @relation(fields: [orderId], references: [id])
+  order      Order    @relation(fields: [orderId], references: [id],onDelete: Cascade )
   quantity   Int
   price      Float
   createdAt  DateTime @default(now())
