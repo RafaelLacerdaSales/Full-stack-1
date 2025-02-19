@@ -1,5 +1,5 @@
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 const productPage = () => {
   return (
     <div className="p-5 border border-red-500 rounded-xl">
