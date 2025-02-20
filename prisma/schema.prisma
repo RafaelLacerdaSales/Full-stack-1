@@ -16,7 +16,7 @@ datasource db {
 model Restaurant {
   id             String         @id @default(uuid())
   name           String
-  slug           String
+  slug           String         @unique
   description    String
   avatarImageUrl String
   coverImageUrl  String
@@ -67,10 +67,10 @@ model Order {
 
 model OrderProduct {
   id         String   @id @default(uuid())
-  product    product  @relation(fields: [productId], references: [id],onDelete: Cascade ) 
+  product    product  @relation(fields: [productId], references: [id], onDelete: Cascade)
   productId  String
   orderId    Int
-  order      Order    @relation(fields: [orderId], references: [id],onDelete: Cascade )
+  order      Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
   quantity   Int
   price      Float
   createdAt  DateTime @default(now())
