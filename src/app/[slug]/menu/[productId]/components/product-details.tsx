@@ -28,7 +28,7 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
                     </p>
                 </div>
                 <h2 className="text-xl font-semibold mt-1">{product.name}</h2>
-                <div className="flex items-center justify-between mt-3">
+                <div className="flex items-center justify-between">
                     <h3 className="text-xl font-semibold">
                         {formatCurrency(product.price)}
                     </h3>
@@ -47,7 +47,7 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
                         <h4 className="font-semibold">Sobre</h4>
                         <p className="text-sm text-muted-foreground">{product.description}</p>
                     </div>
-                    <div className=" space-y-3">
+                    <div className="mt-1 space-y-3">
                         <h4 className="font-semibold">Ingredientes</h4>
                         <ChefHatIcon size={18} />
                         <div className="flex items-center gap-1"></div>
@@ -60,7 +60,7 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
                     </div>
                 </ScrollArea>
             </div>
-            <Button className="rounded-full w-full mb-2">Adicionar à sacola</Button>
+            <Button className="rounded-full w-full mt-6 mb-6">Adicionar à sacola</Button>
         </div>
     );
 }
