@@ -16,7 +16,7 @@ interface ProductHeaderProps {
 const ProductHeader = ({product}: ProductHeaderProps) => {
     const router = useRouter()
     const handleBackClick = () => router.back();
-    return (    <div className="relative w-full h-[300px]">
+    return (    <div className="relative w-full min-h-[300px] me">
         <div className="relative h-[250px] w-full:">
         <Button variant="secondary" size="icon" className="absolute top-4 left-4 z-50 rounded-full" onClick={handleBackClick}>
             <ChevronLeftIcon/>
