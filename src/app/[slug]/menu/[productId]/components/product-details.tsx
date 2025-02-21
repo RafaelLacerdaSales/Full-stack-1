@@ -4,21 +4,28 @@ import { Prisma } from "@prisma/client";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { ChefHatIcon, ChevronsLeftIcon, ChevronsRightIcon } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { formatCurrency } from "@/helpers/format-currency";
+
+import { CartContext } from "../../contexts/cart";
+import CartSheet from "./cart-sheet";
 
 interface ProductDetailsProps {
     product: Prisma.productGetPayload<{ include: { restaurant: { select: { name: true; avatarImageUrl: true } } } }>;
 }
 
 const ProductDetails = ({ product }: ProductDetailsProps) => {
+    const {toggleCart} = useContext(CartContext);
     const [quantity, setQuantity] = useState<number>(1);
     const handleDecreaseQuantity = () => setQuantity((prev: number) => Math.max(prev - 1, 1));
     const handleIncreaseQuantity = () => setQuantity((prev: number) => prev + 1);
-
+    const handleAddToCart = () => {
+        toggleCart();
+    }
     return (
+       <>
         <div className="relative z-50 mt-[-1.5rem] rounded-t-3xl px-5 flex flex-col h-full overflow-hidden">
             <div className="flex-auto overflow-hidden">
                 <div className="flex items-center gap-1.5">
@@ -60,8 +67,11 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
                     </div>
                 </ScrollArea>
             </div>
-            <Button className="rounded-full w-full mt-6 mb-6">Adicionar à sacola</Button>
+            <Button className="rounded-full w-full mt-6 mb-6" onClick={handleAddToCart}>Adicionar à sacola</Button>
         </div>
+        <CartSheet/>
+ 
+       </>
     );
 }
 
